@@ -10,14 +10,8 @@ def get_action_2(history):
     """
     pass
 
-def check_stronger(claim1, claim2):
+def check_exists(claim1, p1_hand, p2_hand):
     """
-    Checks which hand is stronger
-    """
-    pass
-
-def get_strongest(p1hand, p2hand):
-    """
-    Gets strongest claim based on the 4 cards
+    Checks if the claim is True or not
     """
     pass
