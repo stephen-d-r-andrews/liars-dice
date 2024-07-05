@@ -1,6 +1,6 @@
 import random
 
-from action_functions import get_action_1, get_action_2, check_stronger, get_strongest
+from action_functions import get_action_1, get_action_2, check_exists
 
 
 count = ["one", "two", "three", "four"]
@@ -8,6 +8,7 @@ numbers = [1, 2, 3, 4, 5, 6]
 
 player_turn = 1
 rejecting_player = 0
+other_player = 0
 
 history = [[], []]
 claim = None
@@ -22,7 +23,9 @@ def run_game():
 
             if next_action == "reject":
                 rejecting_player = 1
+                other_player = 2
                 final_claim = claim
+
             claim = next_action
 
             history[0].append(claim)
@@ -33,15 +36,18 @@ def run_game():
 
             if next_action == "reject":
                 rejecting_player = 2
+                other_player = 1
                 final_claim = claim
+
             claim = next_action
 
             history[1].append(claim)
             player_turn = 1
-
-    strongest_claim = get_strongest(p1_hand, p2_hand)
     
-    check_stronger(final_claim, strongest_claim)
+    if check_exists(final_claim, p1_hand, p2_hand): # Rejecting player loses
+        return other_player
+    else:
+        return rejecting_player 
 
 
 def main():
